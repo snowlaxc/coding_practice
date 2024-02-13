@@ -20,9 +20,12 @@ def solution(progresses, speeds):
             else:
                 answer.append(day)
                 break
-                
+    print(answer)
+    
     answer = sorted(Counter(answer).items(), key = lambda x:x[0], reverse = False)
+    print(answer)
     
     answer = list(i[1] for i in answer)
+    print(answer)
         
     return answer
