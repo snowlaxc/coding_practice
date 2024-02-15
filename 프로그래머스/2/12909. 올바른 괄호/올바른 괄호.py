@@ -1,16 +1,15 @@
+from collections import deque, Counter
 def solution(s):
-    left = 0
-    right = 0
-    for i in s:
-        if i == "(":
-            left += 1
-        else:
-            right += 1
-            
-        if left < right:
-            return False
-        
-    if left != right:
+    s = deque(s)
+    s_dict = Counter(s)
+    
+    if s_dict["("] != s_dict[")"]:
         return False
-    else:
-        return True
+    
+    for _ in range(len(s)):
+        output = s.popleft()
+        s_dict[output] -= 1
+        if s_dict["("] > s_dict[")"]:
+            return False
+    
+    return True
