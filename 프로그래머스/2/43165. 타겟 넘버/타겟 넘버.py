@@ -1,37 +1,15 @@
-# # BFS
-# def solution(numbers, target):
-#     leaves = [0]
-#     count = 0
-    
-#     for num in numbers:
-#         temp = []
-        
-#         for leaf in leaves:
-#             temp.append(leaf + num)
-#             temp.append(leaf - num)
-        
-#         leaves = temp
-        
-#     for leaf in leaves:
-#         if leaf == target:
-#             count += 1
-            
-#     return count
-
-
-# DFS
 def solution(numbers, target):
+    global answer
     answer = 0
     
-    def dfs(idx, result):
-        if idx == len(numbers):
-            if result == target:
-                nonlocal answer
-                answer += 1
-            return
-        else:
-            dfs(idx + 1, result + numbers[idx])
-            dfs(idx + 1, result - numbers[idx])
-    
-    dfs(0, 0)
+    DFS(numbers, target, 0, 0)
     return answer
+
+def DFS(numbers, target, time, result):
+    if (len(numbers) == time):
+        if (target == result):
+            global answer
+            answer += 1
+    else:
+        DFS(numbers, target, time + 1, result + numbers[time])
+        DFS(numbers, target, time + 1, result - numbers[time])
