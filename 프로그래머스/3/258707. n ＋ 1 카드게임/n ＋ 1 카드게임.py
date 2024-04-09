@@ -1,6 +1,3 @@
-# from collections import deque
-
-
 def solution(coin, cards):
     len_cards = len(cards)
     max_num = len_cards + 1
