@@ -1,18 +1,20 @@
+from heapq import heapify, heappush, heappop
+
 def solution(operations):
-    queue = []
+    answer = []
+    hqueue = []
     
     for i in operations:
         if i == "D -1":
-            if queue:
-                queue.remove(min(queue))
+            if hqueue:
+                heappop(hqueue)
         elif i == "D 1":
-            if queue:
-                queue.remove(max(queue))
+            if hqueue:
+                hqueue.sort()
+                hqueue.pop()
         else:
             _, num = i.split(" ")
             num = int(num)
-            queue.append(num)
+            heappush(hqueue, num)
 
-    # print(queue)
-    
-    return [max(queue), min(queue)] if queue else [0, 0]
+    return [max(hqueue), min(hqueue)] if hqueue else [0, 0]
